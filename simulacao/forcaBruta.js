@@ -4,6 +4,8 @@
 
 import { createHash } from "crypto";
 
+//console.log(criaHash("Uma senha Qualquer"));
+
 class Usuario {
   constructor(nome, senha) {
     this.nome = nome;
@@ -13,18 +15,17 @@ class Usuario {
     return createHash("sha256").update(senha).digest("hex");
   }
   autentica(nome, senha) {
-    if (nome === this.name && this.hash === this.criaHash(senha)) {
+    if (nome === this.nome && this.hash === this.criaHash(senha)) {
       console.log("Usuário autenticado com sucesso!");
       return true;
     }
-    //console.log("Usuário ou senha incorretos");
+
+    //console.log("Usuário ou senha incorreto");
     return false;
   }
 }
 
-// Então, podemos criar um laço de repetição para percorrer a maioria das senhas possíveis, assumindo que serão apenas senhas numéricas de 4 dígitos:
-
-const usuario = new Usuario("alex majdalani", "1665");
+const usuario = new Usuario("alex majdalani", "2026");
 
 for (let senhaTeste = 0; senhaTeste < 10000; senhaTeste++) {
   if (usuario.autentica("alex majdalani", senhaTeste.toString())) {
